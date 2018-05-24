@@ -57,7 +57,7 @@ try:
 except FileNotFoundError :
     f = open("new_notice.txt", 'w')
     f.write(my_titles[0].get('href'))
-    token = 'xoxp-213570357875-213107944801-219559743301-efc9213e2e4271f65b83666069b7f731'
+    token = 'xoxp-213570357875-213107944801-369279448002-5430efac126375b470ed0abf71e7bec5'
     send_slack_message(token)
 
 f.close()
@@ -70,7 +70,7 @@ if notice_url != my_titles[0].get('href'):
     f.close()
     # Slack으로 보내기
     # 테스트채널
-    token = 'xoxp-213570357875-213107944801-219559743301-efc9213e2e4271f65b83666069b7f731'
+    token = 'xoxp-213570357875-213107944801-369279448002-5430efac126375b470ed0abf71e7bec5'
     send_slack_message(token)
 else:
     print("기존 공지사항과 url같음. slack으로 공지 전송 X")
