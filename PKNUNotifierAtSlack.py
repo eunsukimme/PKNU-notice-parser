@@ -3,11 +3,15 @@ import requests
 from bs4 import BeautifulSoup
 from slacker import Slacker
 
+# your 'something' goes here 로 작성된 부분에 정보를 입력하면 된다.
+
+# 토큰을 정의한다
+token = " your token goes here "
 
 def send_slack_message(token):
     slack = Slacker(token)
-    slack.chat.post_message('#notice', my_titles[0].text)
-    slack.chat.post_message('#notice', link)
+    slack.chat.post_message('#your_channel_name_goes_here', my_titles[0].text)
+    slack.chat.post_message('#your_channel_name_goes_here', link)
 
 
 # HTTP GET Request
@@ -57,8 +61,8 @@ try:
 except FileNotFoundError :
     f = open("new_notice.txt", 'w')
     f.write(my_titles[0].get('href'))
-    token = 'xoxp-213570357875-213107944801-369279448002-5430efac126375b470ed0abf71e7bec5'
     send_slack_message(token)
+    exit()
 
 f.close()
 
@@ -70,7 +74,6 @@ if notice_url != my_titles[0].get('href'):
     f.close()
     # Slack으로 보내기
     # 테스트채널
-    token = 'xoxp-213570357875-213107944801-369279448002-5430efac126375b470ed0abf71e7bec5'
     send_slack_message(token)
 else:
     print("기존 공지사항과 url같음. slack으로 공지 전송 X")
