@@ -2,6 +2,9 @@
 
 ### Parse PKNU notices and send message to slack chennel
 
+#### 2017 WAP Summer vacation project
+##### 20기 한지훈 김은수 박유진
+
 1.  use slack api "slacker"
 
 *   to alert some news
