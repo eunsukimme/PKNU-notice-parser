@@ -7,11 +7,12 @@ from slacker import Slacker
 
 # 토큰을 정의한다
 token = " your token goes here "
+channel_name = " your channel name goes here "
 
-def send_slack_message(token):
-    slack = Slacker(token)
-    slack.chat.post_message('#your_channel_name_goes_here', my_titles[0].text)
-    slack.chat.post_message('#your_channel_name_goes_here', link)
+def send_slack_message(_token, _channel_name):
+    slack = Slacker(_token)
+    slack.chat.post_message(_channel_name, my_titles[0].text)
+    slack.chat.post_message(_channel_name, link)
 
 
 # HTTP GET Request
@@ -61,7 +62,7 @@ try:
 except FileNotFoundError :
     f = open("new_notice.txt", 'w')
     f.write(my_titles[0].get('href'))
-    send_slack_message(token)
+    send_slack_message(token, channel_name)
     exit()
 
 f.close()
@@ -74,6 +75,6 @@ if notice_url != my_titles[0].get('href'):
     f.close()
     # Slack으로 보내기
     # 테스트채널
-    send_slack_message(token)
+    send_slack_message(token, channel_name)
 else:
     print("기존 공지사항과 url같음. slack으로 공지 전송 X")
