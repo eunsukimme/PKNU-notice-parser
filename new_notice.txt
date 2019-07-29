@@ -1,0 +1,1 @@
+/usrBoardActn.do?p_cmd=view&p_b_idx=606008&p_bm_idx=5&p_boardcode=PK10000005&p_pageno=1

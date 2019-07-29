@@ -1,18 +1,22 @@
 # python.py
 import requests
 from bs4 import BeautifulSoup
-from slacker import Slacker
+import json
 
 # your 'something' goes here 로 작성된 부분에 정보를 입력하면 된다.
 
-# 토큰을 정의한다
-token = " your token goes here "
-channel_name = " your channel name goes here "
+# slack app의 webhook url을 정의한다
+webhook_url = ' something goes here '
 
-def send_slack_message(_token, _channel_name):
-    slack = Slacker(_token)
-    slack.chat.post_message(_channel_name, my_titles[0].text)
-    slack.chat.post_message(_channel_name, link)
+def send_slack_message():
+    headers = {
+        'Content-type': 'application/json'
+    }
+    data = {
+        'text': my_titles[0].text + '\n\n' + link
+    }
+    res = requests.post(webhook_url, headers=headers, data=json.dumps(data))
+    print('slack webhook 응답: ' + str(res.status_code))
 
 
 # HTTP GET Request
@@ -62,7 +66,7 @@ try:
 except FileNotFoundError :
     f = open("new_notice.txt", 'w')
     f.write(my_titles[0].get('href'))
-    send_slack_message(token, channel_name)
+    send_slack_message()
     exit()
 
 f.close()
@@ -75,6 +79,6 @@ if notice_url != my_titles[0].get('href'):
     f.close()
     # Slack으로 보내기
     # 테스트채널
-    send_slack_message(token, channel_name)
+    send_slack_message()
 else:
     print("기존 공지사항과 url같음. slack으로 공지 전송 X")
