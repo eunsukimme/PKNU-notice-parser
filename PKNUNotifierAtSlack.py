@@ -6,15 +6,30 @@ import json
 # your 'something' goes here 로 작성된 부분에 정보를 입력하면 된다.
 
 # slack app의 webhook url을 정의한다
-webhook_url = ' something goes here '
+webhook_url = 'https://hooks.slack.com/services/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'
 
 def send_slack_message():
     headers = {
         'Content-type': 'application/json'
     }
+    
+    # 알림 전송할 공지사항 페이지를 요청한다
+    notice_body_res = requests.get(link)
+    # HTML 소스를 가져온다
+    html = notice_body_res.text
+    # BeautifulSoup로 html 소스를 python 객체로 변환한다
+    soup = BeautifulSoup(html, 'html.parser')
+    # CSS selector로 html 요소에 접근한다
+    # 공지사항 본문은 .contents-inner -> .bbs-view -> .bbs-body 이다
+    notice_body = soup.select (
+        '.contents-inner .bbs-view .bbs-body'
+    )
+    print(notice_body[0].text)
+    # POST 의 body에 제목, 링크, 내용을 모두 포함한다
     data = {
-        'text': my_titles[0].text + '\n\n' + link
+        'text': '제목: ' + my_titles[0].text + '\n' + '내용: ' + notice_body[0].text + '\n' + '링크: ' + link
     }
+
     res = requests.post(webhook_url, headers=headers, data=json.dumps(data))
     print('slack webhook 응답: ' + str(res.status_code))
 
