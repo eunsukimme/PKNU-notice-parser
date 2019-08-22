@@ -6,7 +6,7 @@ import json
 # your 'something' goes here 로 작성된 부분에 정보를 입력하면 된다.
 
 # slack app의 webhook url을 정의한다
-webhook_url = 'https://hooks.slack.com/services/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'
+webhook_url = 'https://hooks.slack.com/services/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'
 
 def send_slack_message():
     headers = {
