@@ -1,4 +1,4 @@
-# PKNU_notice_parser
+# PKNU notice parser
 
 Python, BeautifulSoup, Slack Webhook API 를 활용한 부경대학교 공지사항 알림이
 
